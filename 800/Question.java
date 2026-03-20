@@ -27,3 +27,39 @@ class Main {
         seating(3, arr);
     }
 }
+
+
+// A. Favorite Sequence
+
+class Main {
+    public static void seating(int n, int arr[]) {
+        int i=0;
+        int j;
+        if(n%2==0){
+            j=n-1;
+        }else{
+            j=n-2;
+        }
+        int ans[]=new int[n];
+        int k=0;
+        while(i<n){
+            ans[k]=arr[i];
+            i+=2;
+            k++;
+        }
+        while(j>0){
+            ans[k]=arr[j];
+            k++;
+            j-=2;
+        }
+        
+        for(int p=0;p<n;p++){
+        System.out.println(ans[p]);
+        }
+    }
+
+    public static void main(String[] args) {
+        int arr[] = {2, 3, 1};
+        seating(3, arr);
+    }
+}
