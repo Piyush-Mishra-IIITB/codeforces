@@ -47,7 +47,7 @@ class Main {
             i+=2;
             k++;
         }
-        while(j>0){
+        while(j>=1){
             ans[k]=arr[j];
             k++;
             j-=2;
@@ -56,6 +56,46 @@ class Main {
         for(int p=0;p<n;p++){
         System.out.println(ans[p]);
         }
+    }
+
+    public static void main(String[] args) {
+        int arr[] = {2, 3, 1};
+        seating(3, arr);
+    }
+}
+
+
+// A. Sereja and Dima
+
+class Main {
+    public static void seating(int n, int arr[]) {
+         
+         int s=0;
+         int d=0;
+         int i=0;
+         int j=n-1;
+         while(i<=j){
+             
+             int max=Math.max(arr[i],arr[j]);
+             s+=max;
+             if(max==arr[i]){
+                 i++;
+             }else{
+                 j--;
+             }
+             if(i>j){
+                  System.out.print("sereja " + s + "dima"+d);
+                 return;
+             }
+             int secMax=Math.max(arr[i],arr[j]);
+             d+=secMax;
+             if(secMax==arr[i]){
+                 i++;
+             }else{
+                 j--;
+             }
+         }
+         System.out.print("sereja +" + s + "dima"+d);
     }
 
     public static void main(String[] args) {
