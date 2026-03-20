@@ -103,3 +103,48 @@ class Main {
         seating(3, arr);
     }
 }
+
+B. Discounts(1000 qood ques)
+import java.util.*;
+
+class Main {
+
+    public static long sol(int prices[], int vouchers[]) {
+        Arrays.sort(prices);
+        Arrays.sort(vouchers);
+
+        int n = prices.length;
+
+        long total = 0;
+        for (int x : prices) total += x;
+
+        int left = 0;
+        int right = n - 1;
+
+        for (int i = 0; i < vouchers.length; i++) {
+            int k = vouchers[i];
+
+            if (k == 1) {
+               
+                total -= prices[right];
+                right--;
+            } else {
+                left += (k - 1);
+
+                total -= prices[left];
+                left++;
+            }
+        }
+
+        return total;
+    }
+
+    public static void main(String[] args) {
+        int prices[] = {18, 3, 7, 2, 9};
+        int vouchers[] = {3, 1, 1};
+
+        System.out.println(sol(prices, vouchers)); 
+    }
+}
+
+
