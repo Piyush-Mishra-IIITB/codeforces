@@ -172,3 +172,58 @@ class Solution {
         return i + 1;
     }
 }
+
+
+C. Equal Values
+// Online Java Compiler
+// Use this editor to write, compile and run your Java code online
+import java.util.*;
+class Main {
+    public static int prices(int arr[]){
+        
+        int output=Integer.MAX_VALUE;
+        HashMap<Integer,Integer>hm=new HashMap<>();
+        for(int i=0;i<=arr.length-1;i++){
+            if(hm.containsKey(arr[i])){
+                hm.put(arr[i],hm.get(arr[i]));
+            }else{
+                hm.put(arr[i],1);
+            }
+        }
+        int ans[]=new int[hm.size()];
+        int n=arr.length;
+     int  p=0;
+        for(Integer i:hm.keySet()){
+            int out=findHighestSequence(arr,i);
+            // now prices
+            ans[p]=(n-out)*i;
+            p++;
+        }
+        // finding min in array
+        for(int i=0;i<ans.length;i++){
+            output=Math.min(output,ans[i]);
+        }
+        return output;
+    }
+    public static int findHighestSequence(int arr[],int no){
+        int max=1;
+        int current=1;
+        for(int i=0;i<arr.length-1;i++){
+            if(arr[i]==arr[i+1] && arr[i]==no){
+                current++;
+                max=Math.max(max,current);
+            }
+            else{
+                current=1;
+            }
+            
+        }
+        return max;
+    }
+    public static void main(String[] args) {
+       int arr[]={7, 5, 5, 5, 10, 9, 9, 4, 6, 10};
+       System.out.print(prices(arr));
+    }
+}
+
+
