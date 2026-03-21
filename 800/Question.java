@@ -227,3 +227,35 @@ class Main {
 }
 
 
+
+//C. Alice, Bob and Chocolate
+class Main {
+    public static void helper(int arr[]) {
+
+        int n = arr.length;
+        int i = 0, j = n - 1;
+
+        int timeA = 0, timeB = 0;
+        int countA = 0, countB = 0;
+
+        while (i <= j) {
+
+            if (timeA <= timeB) {
+                timeA += arr[i];
+                i++;
+                countA++;
+            } else {
+                timeB += arr[j];
+                j--;
+                countB++;
+            }
+        }
+
+        System.out.println(countA + " " + countB);
+    }
+
+    public static void main(String[] args) {
+        int arr[] = {2, 9, 8, 2, 7};
+        helper(arr);
+    }
+}
