@@ -310,3 +310,39 @@ class Main {
         System.out.println(subarray(arr,10));
     }
 }
+
+// leetcode-3
+
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+
+       int low=0;
+       int high=0;
+       int length=0;
+       HashMap<Character,Integer>hm=new HashMap<>();
+       for(high=0;high<s.length();high++){
+         if(hm.containsKey(s.charAt(high))){
+            hm.put(s.charAt(high),hm.get(s.charAt(high))+1);
+         }
+         else{
+            hm.put(s.charAt(high),1);
+         }
+         
+         if(hm.size()==high-low+1){
+            length=Math.max(hm.size(),length);
+         }
+         while(hm.size()<high-low+1){
+            int a=hm.get(s.charAt(low));
+            if(a==1){
+                hm.remove(s.charAt(low));
+            } else{
+                hm.remove(s.charAt(low));
+                hm.put(s.charAt(low),a-1);
+            }
+            low++;
+         }
+         
+       }
+       return length;
+    }
+}
