@@ -259,3 +259,30 @@ class Main {
         helper(arr);
     }
 }
+
+
+// max subarray sum with size k
+
+class Main {
+    public static int subarray(int arr[],int p){
+        int i=0;
+        int j=p-1;
+        int n=arr.length-1;
+        int maxSum=0;
+        for (int k=0;k<=j;k++){
+                maxSum +=arr[k];
+            }
+            int currSum=maxSum;
+        while(j<n){
+            j++;
+            currSum=currSum+arr[j]-arr[i];
+            maxSum=Math.max(maxSum,currSum);
+            i++;
+        }
+        return maxSum;
+    }
+    public static void main(String[] args) {
+        int arr[]={1,5,2,9,3,5};
+        System.out.println(subarray(arr,3));
+    }
+}
