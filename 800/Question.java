@@ -286,3 +286,27 @@ class Main {
         System.out.println(subarray(arr,3));
     }
 }
+
+// min length of subarray whose sum>=target
+class Main {
+    public static int subarray(int arr[],int target){
+        int low=0;
+         int high;
+         int sum=0;
+         int length=arr.length;
+        for(high=0;high<arr.length;high++){
+           sum =sum+arr[high];
+           while(sum>=target){
+               int l=high-low+1;
+               length=Math.min(l,length);
+               sum=sum-arr[low];
+               low++;
+           }
+        }
+        return length;
+    }
+    public static void main(String[] args) {
+        int arr[]={1,5,2,9,3,5};
+        System.out.println(subarray(arr,10));
+    }
+}
