@@ -396,3 +396,30 @@ class Main {
         System.out.println(MaxProduct(arr));
     }
 }
+
+// circular max sum
+
+class Main {
+    public static int maxCircularSum(int arr[]) {
+        int totalSum = 0;
+
+        int maxEnding = arr[0], maxSum = arr[0];
+        int minEnding = arr[0], minSum = arr[0];
+
+        for (int i = 0; i < arr.length; i++) {
+            totalSum += arr[i];
+            maxEnding = Math.max(arr[i], maxEnding + arr[i]);
+            maxSum = Math.max(maxSum, maxEnding);
+            minEnding = Math.min(arr[i], minEnding + arr[i]);
+            minSum = Math.min(minSum, minEnding);
+        }
+        if (maxSum < 0) return maxSum;
+
+        return Math.max(maxSum, totalSum - minSum);
+    }
+
+    public static void main(String[] args) {
+        int arr[] = {5, -3, 5};
+        System.out.println(maxCircularSum(arr)); // 10
+    }
+}
