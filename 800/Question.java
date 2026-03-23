@@ -371,3 +371,28 @@ class Main {
     }
 }
 
+// max product of subarray
+
+
+// find max subarray product
+
+class Main {
+    public static int MaxProduct(int arr[]){
+       int possitive =arr[0];
+       int negative=arr[0];
+       int ans=arr[0];
+       for(int i=1;i<arr.length;i++){
+          int v1=arr[i];
+          int v2=arr[i]*possitive;
+          int v3=arr[i]*negative;
+          possitive=Math.max(v1,Math.max(v2,v3));
+          negative=Math.min(v1,Math.min(v3,v2));
+          ans=Math.max(ans,Math.max(possitive,negative));
+       }
+       return ans;
+    }
+    public static void main(String[] args) {
+        int arr[]={-2,4,1,-9,10};
+        System.out.println(MaxProduct(arr));
+    }
+}
