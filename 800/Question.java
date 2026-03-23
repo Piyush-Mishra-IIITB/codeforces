@@ -346,3 +346,28 @@ class Solution {
        return length;
     }
 }
+
+//=- kadanes algorithm
+
+
+// find max subarray sum
+
+class Main {
+    public static int MaxSum(int arr[]){
+       
+       int best_ending=arr[0];
+       int ans=arr[0];
+        for(int i=1;i<arr.length;i++){
+           int v1=best_ending+arr[i];
+           int v2=arr[i];
+           best_ending=Math.max(v1,v2);
+           ans=Math.max(ans,best_ending);
+        }
+        return ans;
+    }
+    public static void main(String[] args) {
+        int arr[]={-2,4,1,-9,10};
+        System.out.println(MaxSum(arr));
+    }
+}
+
