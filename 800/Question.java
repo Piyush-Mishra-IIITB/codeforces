@@ -451,3 +451,34 @@ class Main {
        int arr[]={-1,3,5,-4};
        System.out.println(findLength(arr,4));
 }}
+
+
+
+// subarray sum divisible by k-> here negative ellements are allowed
+import java.util.*;
+class Main {
+    public static int findLength(int arr[],int k){
+         HashMap<Integer,Integer>hm =new HashMap<>();
+        hm.put(0,1);
+        int output=0;
+        int sum=0;
+        for(int i=0;i<arr.length;i++){
+         sum +=arr[i];
+         int find=sum%k;
+         if(find<0){
+             find=find+k;
+         }
+         if(hm.containsKey(find)){
+             output +=hm.get(find);
+         }
+         if(hm.containsKey(find)){
+             hm.put(find,hm.get(find)+1);
+         }else{
+         hm.put(find,1);
+    }}
+    return output;
+    }
+    public static void main(String[] args) {
+       int arr[]={-1,3,5,-4};
+       System.out.println(findLength(arr,4));
+}}
