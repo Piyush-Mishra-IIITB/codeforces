@@ -423,3 +423,31 @@ class Main {
         System.out.println(maxCircularSum(arr)); // 10
     }
 }
+
+
+// subarray Sum equal to K-> here negative ellements are allowed
+import java.util.*;
+class Main {
+    public static int findLength(int arr[],int k){
+         HashMap<Integer,Integer>hm =new HashMap<>();
+        hm.put(0,1);
+        int output=0;
+        int sum=0;
+        for(int i=0;i<arr.length;i++){
+         sum +=arr[i];
+         int find=sum-k;
+         if(hm.containsKey(find)){
+             output+=hm.get(find);
+         }
+         if(hm.containsKey(sum)){
+             hm.put(sum,hm.get(sum)+1);
+         }else{
+             hm.put(sum,1);
+         }
+    }
+    return output;
+    }
+    public static void main(String[] args) {
+       int arr[]={-1,3,5,-4};
+       System.out.println(findLength(arr,4));
+}}
