@@ -515,3 +515,35 @@ class Solution {
         return op <= n ? op : -1;
     }
 }
+
+
+//525. Contiguous Array
+
+
+import java.util.*;
+
+class Solution {
+    public int findMaxLength(int[] arr) {
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] == 0) arr[i] = -1;
+        }
+
+        HashMap<Integer, Integer> hm = new HashMap<>();
+        hm.put(0, -1);
+
+        int sum = 0;
+        int output = 0;
+
+        for (int i = 0; i < arr.length; i++) {
+            sum += arr[i];
+
+            if (hm.containsKey(sum)) {
+                output = Math.max(output, i - hm.get(sum));
+            } else {
+                hm.put(sum, i);
+            }
+        }
+
+        return output;
+    }
+}
