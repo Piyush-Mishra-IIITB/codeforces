@@ -482,3 +482,36 @@ class Main {
        int arr[]={-1,3,5,-4};
        System.out.println(findLength(arr,4));
 }}
+
+//862. Shortest Subarray with Sum at Least K
+
+import java.util.*;
+
+class Solution {
+    public int shortestSubarray(int[] nums, int k) {
+        int n = nums.length;
+
+        long[] parr = new long[n + 1]; 
+        for (int i = 0; i < n; i++) {
+            parr[i + 1] = parr[i] + nums[i]; 
+        }
+
+        Deque<Integer> dq = new LinkedList<>();
+        int op = n + 1;
+
+        for (int i = 0; i <= n; i++) {
+            while (!dq.isEmpty() && parr[i] - parr[dq.peekFirst()] >= k) {
+                op = Math.min(op, i - dq.pollFirst());
+            }
+
+            
+            while (!dq.isEmpty() && parr[i] <= parr[dq.peekLast()]) {
+                dq.pollLast();
+            }
+
+            dq.offerLast(i);
+        }
+
+        return op <= n ? op : -1;
+    }
+}
