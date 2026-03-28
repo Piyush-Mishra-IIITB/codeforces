@@ -810,3 +810,40 @@ class Solution {
         return output;
     }
 }
+
+// optimized way of Koko Eating Bananas
+
+class Solution {
+    public int minEatingSpeed(int[] arr, int h) {
+        int max=Integer.MIN_VALUE;
+        
+        for(int i=0;i<arr.length;i++){
+             max=Math.max(max,arr[i]);
+        }
+        int start=1;
+        
+        int end=max;
+        int op=max;
+        while(start<=end){
+            int mid=start+(end-start)/2;
+            int sum=0;
+            for(int i=0;i<arr.length;i++){
+                int val=0;
+                val=(arr[i]+mid-1)/mid;
+               sum +=val;
+               if(sum>h){
+                break;
+               }
+            }
+            
+            if(sum<=h){
+                op=Math.min(op,mid);
+                end=mid-1;
+            }else{
+              
+              start=mid+1;
+            }
+        }
+        return op;
+    }
+}
