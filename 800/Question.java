@@ -755,3 +755,28 @@ class Main {
         System.out.println(sqrt(9));
     }
 }
+
+
+// find nth root of a number
+
+
+class Main {
+    public static int sqrt(int n,int nth){
+        int start=0;
+        int end=n;
+        int ans=1;
+        while(start<=end){
+            int mid=start+(end-start)/2;
+            if(Math.pow(mid,nth)<=n){
+                ans=Math.max(ans,mid);
+                start=mid+1;
+            }else{
+            end=mid-1;
+            }
+        }
+        return ans;
+    }
+    public static void main(String[] args) {
+        System.out.println(sqrt(16,2));
+    }
+}
