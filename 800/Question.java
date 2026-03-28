@@ -780,3 +780,33 @@ class Main {
         System.out.println(sqrt(16,2));
     }
 }
+
+
+// brute force approach
+
+class Solution {
+    public int minEatingSpeed(int[] arr, int h) {
+        int max=Integer.MIN_VALUE;
+        
+        for(int i=0;i<arr.length;i++){
+             max=Math.max(max,arr[i]);
+        }
+        int p=1;
+        
+        int output=max;
+        while(p<=max){
+        int sum=0;
+        for(int i=0;i<arr.length;i++){
+           int val=0;
+            val = (arr[i] + p - 1) / p;
+            sum+=val;
+        }
+       
+        if(sum<=h){
+            output=Math.min(p,output);
+        }
+        p++;
+        }
+        return output;
+    }
+}
