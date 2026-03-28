@@ -729,3 +729,29 @@ class Solution {
         return false;
     }
 }
+
+
+// binary serach on answer
+
+
+// find sqrt of a number
+class Main {
+    public static int sqrt(int n){
+        int start=0;
+        int end=n;
+        int ans=1;
+        while(start<=end){
+            int mid=(start+(end-start))/2;
+            if(mid*mid<=n){
+                ans=Math.max(ans,mid);
+                start=mid+1;
+            }else{
+            end=mid-1;
+            }
+        }
+        return ans;
+    }
+    public static void main(String[] args) {
+        System.out.println(sqrt(9));
+    }
+}
