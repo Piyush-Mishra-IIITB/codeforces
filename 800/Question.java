@@ -847,3 +847,51 @@ class Solution {
         return op;
     }
 }
+
+// brute force of 1482. Minimum Number of Days to Make m Bouquets
+
+class Solution {
+    public int minDays(int[] nums, int m, int k) {
+        if(k*m>nums.length){
+            return -1;
+        }
+        int max=Integer.MIN_VALUE;
+        for(int i=0;i<nums.length;i++){
+            max=Math.max(max,nums[i]);
+        }
+        int output=max;
+        for(int i=1;i<=max;i++){
+            if(helper(m,k,i,nums)){
+              output=Math.min(output,i);
+            }
+        }
+        return output;
+    }
+    public static boolean helper(int m,int k,int j,int arr[]){
+        boolean ans[]=new boolean[arr.length];
+        for(int i=0;i<arr.length;i++){
+              if(arr[i]<=j){
+                ans[i]=true;
+              }else{
+                ans[i]=false;
+              }
+        }
+        int z=k;
+        for(int i=0;i<ans.length;i++){
+            if(ans[i]==true){
+                z--;
+            }else{
+                z=k;
+            }
+            if(z==0){
+                m--;
+                z=k;
+            }
+        }
+        if(m==0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+}
