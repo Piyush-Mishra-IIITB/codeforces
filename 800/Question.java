@@ -975,3 +975,50 @@ class Solution {
         return output;
     } 
 }
+
+
+// second type of BS max of min
+// aggreesive cows
+
+
+
+import java.util.*;
+public class main{
+    public static int dist(int arr[],int cows){
+        
+        Arrays.sort(arr);
+        if(arr.length<cows){
+            return-1;
+        }
+        int max=arr[arr.length-1];
+        int start=1;
+        int end=max;
+        int output=max;
+        while(start<=end){
+            int mid=start+(end-start)/2;
+            if(poss(arr,cows,mid)){
+                output=mid;
+                start=mid+1;
+            }else{
+                end=mid-1;
+            }
+        }
+        return output;
+    }
+    public static boolean poss(int arr[],int cows,int j){
+        int var=cows-1;
+        int prev=arr[0];
+        
+            for(int i=1;i<arr.length;i++){
+                if(arr[i]-prev>=j){
+                    var--;
+                    prev=arr[i];
+                }
+            }
+        return var<=0;
+    }
+    public static void main(String args[]){
+        int arr[]={0,3,4,7,9,10};
+       System.out.println( dist(arr,4));
+    }
+}
