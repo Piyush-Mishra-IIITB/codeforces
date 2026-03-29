@@ -1022,3 +1022,42 @@ public class main{
        System.out.println( dist(arr,4));
     }
 }
+
+//Allocate Books or Book Allocation 
+
+
+
+class Main {
+    public static int p(int arr[],int st){
+        int max=arr[0];
+        int sum=0;
+        for(int i=0;i<arr.length;i++){
+            max=Math.max(max,arr[i]);
+            sum+=arr[i];
+        }
+        for(int j=max;j<=sum;j++){
+            if(poss(arr,j,st)){
+                return j;
+        }
+        
+    }
+        return -1;
+    }
+    public static boolean poss(int arr[],int j,int st){
+        int student=1;
+        int maxPage=0;
+        for(int i=0;i<arr.length;i++){
+            if(maxPage+arr[i]<=j){
+                maxPage=maxPage+arr[i];
+            }else{
+                student++;
+                maxPage=arr[i];
+            }
+        }
+       return student<=st;
+    }
+    public static void main(String[] args) {
+        int arr[]={10, 20, 30, 40};
+        System.out.println(p(arr,4));
+    }
+}
