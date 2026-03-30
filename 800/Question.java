@@ -1096,3 +1096,63 @@ class Solution {
         return temp;
     }
 }
+
+//2. Add Two Numbers
+
+class Solution {
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+      ListNode t1=l1;
+      ListNode t2=l2;
+      ListNode temp=new ListNode(-1);
+      ListNode t=temp;
+      int carry=0;
+      while(t1!=null && t2 !=null){
+           int sum=carry+t1.val+t2.val;
+           
+        if(sum>=10){
+            carry=sum/10;
+            sum=sum%10;
+        }else{
+            carry=0;
+        }
+        ListNode h=new ListNode(sum);
+        t.next=h;
+        t=t.next;
+        t1=t1.next;
+        t2=t2.next;
+      }
+      
+    
+    while(t1!=null){
+        int sum=carry+t1.val;
+        if(sum>=10){
+            carry=sum/10;
+            sum=sum%10;
+        }else{
+            carry=0;
+        }
+        ListNode h=new ListNode(sum);
+        t.next=h;
+        t=t.next;
+        t1=t1.next;
+    }
+
+    while(t2!=null){
+        int sum=carry+t2.val;
+        if(sum>=10){
+            carry=sum/10;
+            sum=sum%10;
+        }else{
+            carry=0;
+        }
+        ListNode h=new ListNode(sum);
+        t.next=h;
+        t=t.next;
+        t2=t2.next;
+    }
+    if(carry !=0){
+        ListNode h=new ListNode(carry);
+        t.next=h;
+    }
+    return temp.next;
+}}
