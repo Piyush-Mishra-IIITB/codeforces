@@ -1156,3 +1156,36 @@ class Solution {
     }
     return temp.next;
 }}
+
+
+// 328. Odd Even Linked List brute force
+
+class Solution {
+    public ListNode oddEvenList(ListNode head) {
+        if (head == null || head.next == null){
+            return head;
+        }
+        ListNode odd=head;
+        ListNode even=head.next;
+        ListNode ans=new ListNode(-1);
+        ListNode temp=ans;
+        while( odd!=null){
+            temp.next=new ListNode(odd.val);
+            temp=temp.next;
+            if(odd.next==null){
+                break;
+            }
+            odd=odd.next.next;
+        }while(even!=null){
+            temp.next=new ListNode(even.val);
+            temp=temp.next;
+            if(even.next==null){
+                break;
+            }
+            even=even.next.next;
+        }
+        return ans.next;
+
+    }
+    
+}
