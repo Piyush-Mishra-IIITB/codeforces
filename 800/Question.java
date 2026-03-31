@@ -1298,5 +1298,32 @@ public class Solution {
    }
    return false;
 
+}
+}
+// removal of cycle
+
+static void removeLoop(Node head) {
+
+    Node slow = head;
+    Node fast = head;
+    while (fast != null && fast.next != null) {
+        slow = slow.next;
+        fast = fast.next.next;
+
+        if (slow == fast) {
+
+            Node entry = head;
+            while (entry != slow) {
+                entry = entry.next;
+                slow = slow.next;
+            }
+            Node temp = entry;
+            while (temp.next != entry) {
+                temp = temp.next;
+            }
+            temp.next = null;
+
+            break; 
+        }
     }
 }
