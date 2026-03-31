@@ -1217,3 +1217,40 @@ class Solution {
 }
 
     
+//234. Palindrome Linked List
+
+
+class Solution {
+    public boolean isPalindrome(ListNode head) {
+        ListNode slow=head;
+        ListNode fast=head;
+        while(fast.next!=null && fast.next.next!=null){
+            slow=slow.next;
+            fast=fast.next.next;
+        }
+      ListNode nexthalf=reverse(slow.next);
+      ListNode firstHalf=head;
+      while(firstHalf!=null && nexthalf!=null){
+        if(firstHalf.val!=nexthalf.val){
+             return false;
+        }else{
+            firstHalf=firstHalf.next;
+            nexthalf=nexthalf.next;
+        }
+      }
+      return true;
+}
+
+public ListNode reverse(ListNode head){
+    ListNode prev=null;
+    ListNode curr=head;
+    while(curr!=null){
+        ListNode fr=curr.next;
+        curr.next=prev;
+        prev=curr;
+        curr=fr;
+    }
+    return prev;
+}
+
+}
