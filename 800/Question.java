@@ -1254,3 +1254,26 @@ public ListNode reverse(ListNode head){
 }
 
 }
+// intersection of 2 linked list
+
+// brute force
+
+
+public class Solution {
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        HashMap<ListNode,Integer>hm=new HashMap<>();
+        ListNode h1=headA;
+        while(h1!=null){
+            hm.put(h1,1);
+            h1=h1.next;
+        }
+        ListNode h2=headB;
+        while(h2!=null){
+            if(hm.containsKey(h2)){
+                return h2;
+            }else{
+                h2=h2.next;
+            }
+        }
+        return null;
+}}
