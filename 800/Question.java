@@ -1327,3 +1327,96 @@ static void removeLoop(Node head) {
         }
     }
 }
+
+// 61. Rotate List
+
+class Solution {
+    public ListNode rotateRight(ListNode head, int k) {
+        if (head == null || head.next == null) return head;
+
+        int len = 0;
+        ListNode temp = head;
+        while (temp != null) {
+            len++;
+            temp = temp.next;
+        }
+
+        k = k % len;
+
+        while (k-- > 0) {
+
+            ListNode prev = null;
+            ListNode curr = head;
+
+            while (curr.next != null) {
+                prev = curr;
+                curr = curr.next;
+            }
+            prev.next = null;   
+            curr.next = head;  
+            head = curr;       
+        }
+
+        return head;
+    }
+}
+
+//21. Merge Two Sorted Lists
+
+
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */class Solution {
+
+    public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
+    ListNode temp1=list1;
+    ListNode temp2=list2;
+    ListNode ans=new ListNode(-1);
+    ListNode var=ans;
+    int l1=length(list1);
+    int l2=length(list2);
+    while(l1 !=0 && l2 !=0){
+        int val=Math.min(temp1.val,temp2.val);
+        var.next=new ListNode(val);
+        var=var.next;
+        if(temp1.val>=temp2.val){
+            l2--;
+            temp2=temp2.next;
+        }else{
+            l1--;
+            temp1=temp1.next;
+        }
+    }
+    while(l1!=0){
+        int val=temp1.val;
+        var.next=new ListNode(val);
+        var=var.next;
+        temp1=temp1.next;
+        l1--;
+    }
+    while(l2!=0){
+        int val=temp2.val;
+        var.next=new ListNode(val);
+        var=var.next;
+        temp2=temp2.next;
+        l2--;
+    }
+    return ans.next;
+    }
+    public static int length(ListNode l1){
+        ListNode temp=l1;
+        int length=0;
+        while(temp!=null){
+            length++;
+            temp=temp.next;
+        }
+        return length;
+    } 
+}
