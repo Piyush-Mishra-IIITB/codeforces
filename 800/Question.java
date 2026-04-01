@@ -1420,3 +1420,17 @@ class Solution {
         return length;
     } 
 }
+// recursion
+
+// factorial
+class Main {
+    public static int  print(int i){
+        if(i==0 || i==1){
+            return i;
+        }
+        return i*print(i-1);
+    }
+    public static void main(String[] args) {
+       System.out.print(print(5));
+    }
+}
