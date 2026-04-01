@@ -1458,3 +1458,37 @@ class Main {
         }
     }
 }
+
+
+// subsequence 
+
+
+import java.util.*;
+
+class Main {
+
+    public static void helper(int arr[], int i, List<Integer> ll, List<List<Integer>> ans) {
+        
+        if (i == arr.length) {
+            ans.add(new ArrayList<>(ll)); 
+            return;
+        }
+
+        ll.add(arr[i]);
+        helper(arr, i + 1, ll, ans);
+
+        ll.remove(ll.size() - 1);
+        helper(arr, i + 1, ll, ans);
+    }
+
+    public static List<List<Integer>> print(int arr[]) {
+        List<List<Integer>> ans = new ArrayList<>();
+        helper(arr, 0, new ArrayList<>(), ans);
+        return ans;
+    }
+
+    public static void main(String[] args) {
+        int arr[] = {1, 2, 3};
+        System.out.println(print(arr));
+    }
+}
