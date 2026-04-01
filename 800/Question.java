@@ -1434,3 +1434,27 @@ class Main {
        System.out.print(print(5));
     }
 }
+
+// reversal of array using recursion
+
+
+class Main {
+    public static void  print(int arr[],int i,int j){
+        if(i>j){
+            return;
+        }
+        else{int temp=arr[i];
+        arr[i]=arr[j];
+        arr[j]=temp;
+        print(arr,i+1,j-1);
+        }
+    
+    }
+    public static void main(String[] args) {
+       int arr[]={1,2,3,4,5};
+       print(arr,0,4);
+       for(int p=0;p<arr.length;p++){
+            System.out.println(arr[p]);
+        }
+    }
+}
