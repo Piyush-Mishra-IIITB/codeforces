@@ -1547,3 +1547,38 @@ class Solution {
         helper(arr,target,sum,ans,ll,i+1);
 }
 }
+
+
+// optimized way of combination sum-2
+
+
+class Solution {
+    public List<List<Integer>> combinationSum2(int[] candidates, int target) {
+        Arrays.sort(candidates);
+        List<List<Integer>>ans=new ArrayList<>();
+        List<Integer>ll=new ArrayList<>();
+        helper(candidates,target,0,ans,ll,0);
+        return ans;
+}
+public static void helper(int arr[],int target,int sum,List<List<Integer>>ans,List<Integer>ll,int i){
+
+if(sum==target){
+    ans.add(new ArrayList<>(ll));
+    return;
+}
+    for(int j=i;j<arr.length;j++){
+
+        
+        if(j >i && arr[j]==arr[j-1]){
+              continue;
+        }
+        if(sum>target){
+            break;
+        }
+        ll.add(arr[j]);
+        helper(arr,target,sum+arr[j],ans,ll,j+1);
+        ll.remove(ll.size()-1);
+    }
+}
+
+}
