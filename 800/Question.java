@@ -1518,3 +1518,32 @@ class Solution {
         helper(arr,target,sum,ans,ll,i+1);
 }
 }
+
+// brute force of combination sum-2
+
+
+class Solution {
+    public List<List<Integer>> combinationSum2(int[] candidates, int target) {
+        Arrays.sort(candidates);
+        List<List<Integer>>ans=new ArrayList<>();
+        List<Integer>ll=new ArrayList<>();
+        helper(candidates,target,0,ans,ll,0);
+        return ans;
+    }
+    public static void helper(int arr[],int target,int sum,List<List<Integer>>ans,List<Integer>ll,int i){
+        if(sum==target){
+            if(ans.contains(ll)==false){
+                ans.add(new ArrayList<>(ll));
+            }
+            return;
+        }
+        if(sum>target || i==arr.length){
+            return;
+        }
+
+        ll.add(arr[i]);
+        helper(arr,target,sum+arr[i],ans,ll,i+1);
+        ll.remove(ll.size()-1);
+        helper(arr,target,sum,ans,ll,i+1);
+}
+}
