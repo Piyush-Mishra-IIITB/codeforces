@@ -1639,3 +1639,44 @@ class Solution {
     }
 }
 
+//131. Palindrome Partitioning
+
+import java.util.*;
+class Solution {
+    public List<List<String>> partition(String s) {
+        List<List<String>>ans=new ArrayList<>();
+        List<String>ll=new ArrayList<>();
+    
+        helper(0,ll,ans,s);
+        return ans;
+    }
+    public static void helper(int index,List<String>ll,List<List<String>>ans,String s){
+        
+        if(index==s.length()){
+            ans.add(new ArrayList<>(ll));
+            return;
+        }
+
+        for(int i=index;i<s.length();i++){
+              
+               if(isPlaind(s,index,i)){
+                 ll.add(s.substring(index,i+1));
+                 helper(i+1,ll,ans,s);
+                 ll.remove(ll.size()-1);
+               }
+               
+        }
+    }
+    public static boolean isPlaind(String s,int index,int p){
+      int i=index;
+      int j=p;
+      while(i<=j){
+        if(s.charAt(i)!=s.charAt(j)){
+            return false;
+        }
+        i++;
+        j--;
+      }
+      return true;
+    }
+}
