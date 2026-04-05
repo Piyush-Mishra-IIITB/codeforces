@@ -1680,3 +1680,44 @@ class Solution {
       return true;
     }
 }
+
+
+// brute force of 22 generate parentheses
+
+class Solution {
+    public List<String> generateParenthesis(int n) {
+        List<String>ans=new ArrayList<>();
+        String s="";
+        helper(0,n,ans,s);
+        return ans;
+
+    }
+    public static void helper(int i,int n,List<String>ans,String s){
+        
+        if(s.length()==2*n){
+           if(isValidate(s)){
+              ans.add(s);
+            return;
+           } 
+        }
+        
+        helper(i+1,n,ans,s+ "(");
+        helper(i+1,n,ans,s+ ")");
+    }
+    public static boolean isValidate(String s){
+        Stack<Character>ss=new Stack<>();
+        
+        for(int i=0;i<s.length();i++){
+            char p=s.charAt(i);
+            if(p=='('){
+                ss.push(p);
+            }else{
+                if(ss.size()==0){
+                    return false;
+                }
+                ss.pop();
+            }
+     
+    }
+    return ss.size()==0;
+}}
