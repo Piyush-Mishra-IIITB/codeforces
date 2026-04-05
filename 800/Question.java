@@ -1608,3 +1608,34 @@ class Solution {
 
     }
 }
+
+// 46. Permutations
+
+class Solution {
+    public List<List<Integer>> permute(int[] nums) {
+        List<List<Integer>> ans=new ArrayList<>();
+        List<Integer> a=new ArrayList<>();
+        boolean arr[]=new boolean[nums.length];
+        Arrays.sort(nums);
+        permute(0,nums,ans,a,arr);
+        return ans;
+        
+        
+    }
+    public static void permute(int index,int nums[],List<List<Integer>> ans,List<Integer> a,boolean arr[]){
+        if(a.size()==arr.length){
+            ans.add(new ArrayList<>(a));
+            return ;
+        }
+        for(int i=0;i<arr.length;i++){
+              if(arr[i]!=true){
+                a.add(nums[i]);
+                arr[i]=true;
+                permute(index+1,nums,ans,a,arr);
+                a.remove(a.size()-1);
+                arr[i]=false;
+              }
+        }
+    }
+}
+
