@@ -1721,3 +1721,33 @@ class Solution {
     }
     return ss.size()==0;
 }}
+
+// leetcpode 22 generate parentheses optimized way
+
+
+class Solution {
+    public List<String> generateParenthesis(int n) {
+        List<String>ans=new ArrayList<>();
+        String s="";
+        helper(n,ans,s,0,0);
+        return ans;
+
+    }
+    public static void helper(int n,List<String>ans,String s,int open,int close){
+        
+        if(s.length()==2*n)
+          {
+              ans.add(s);
+            return;
+           } 
+        
+        if(open<n){
+             helper(n,ans,s+ "(",open+1,close);
+        }
+       if(close<open){
+            helper(n,ans,s+ ")",open,close+1);
+       }
+       
+    }
+   
+}
