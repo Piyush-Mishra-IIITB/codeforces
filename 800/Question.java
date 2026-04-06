@@ -1751,3 +1751,47 @@ class Solution {
     }
    
 }
+
+//.605. Can Place Flowers
+
+ class Solution {
+    public boolean canPlaceFlowers(int[] arr, int n) {
+        if(arr.length==1){
+            if(arr[0]==0 && n==1){
+                return true;
+            }
+            if(arr[0]==1 && n==0){
+                return true;
+            }
+            if(arr[0]==0 && n==0){
+                return true;
+            }
+          return false;
+        }
+     int pl=0;
+       for(int i=0;i<arr.length;i++){
+        if(arr[i]==0){
+               arr[i]=1;
+               pl++;
+               if(i==0){
+                    if( arr[i+1]==0){
+                       continue;
+               }}
+               if(i==arr.length-1){
+                    if( arr[i-1]==0){
+                       continue;
+                  }
+               }
+               
+               if(i>0 && i<arr.length-1){
+                  if(arr[i-1]==0 && arr[i+1]==0){
+                continue;
+               }
+               }
+                
+               arr[i]=0;
+               pl--;
+        }
+        
+    }return pl>=n;
+} }
