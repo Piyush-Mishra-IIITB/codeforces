@@ -1826,3 +1826,37 @@ class Solution {
      return nums1;
     }
 }
+
+
+// brute force of sum of subarray ranges
+
+
+
+class Solution {
+    public long subArrayRanges(int[] arr) {
+       List<List<Integer>>ll=new ArrayList<>();
+       
+        for(int i=0;i<arr.length;i++){
+            List<Integer>ans=new ArrayList<>();
+            for(int j=i+1;j<arr.length;j++){
+                for(int k=i;k<=j;k++){
+                   ans.add(arr[k]);
+                }
+                ll.add(new ArrayList<>(ans));
+            } 
+        }
+        long sum=0;
+        for(int i=0;i<ll.size();i++){
+            List<Integer>a=ll.get(i);
+            int min=Integer.MAX_VALUE;
+            int max=Integer.MIN_VALUE;
+            for(int j=0;j<a.size();j++){
+                 min=Math.min(min,a.get(j));
+                 max=Math.max(max,a.get(j));
+            }
+            sum+=max-min;
+        }
+        return sum;
+
+    }
+}
