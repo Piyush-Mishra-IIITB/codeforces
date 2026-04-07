@@ -1795,3 +1795,34 @@ class Solution {
         
     }return pl>=n;
 } }
+
+// mext greater ellement in array
+
+
+class Solution {
+    public int[] nextGreaterElement(int[] nums1, int[] nums2) {
+          Stack<Integer>ss=new Stack<>();
+          int nge[]=new int[nums2.length];
+          for(int i=nums2.length-1;i>=0;i--){
+            int curr=nums2[i];
+            while(!ss.isEmpty() && ss.peek()<=curr){
+                ss.pop();
+            }
+            if(ss.isEmpty()){
+                 nge[i]=-1;
+            }else{
+                nge[i]=ss.peek();
+            }
+            ss.push(nums2[i]);
+          }
+          HashMap<Integer,Integer>hm=new HashMap<>();
+     for(int i=0;i<nums2.length;i++){
+            hm.put(nums2[i],nge[i]);
+     }
+     for(int i=0;i<nums1.length;i++){
+        int val=hm.get(nums1[i]);
+        nums1[i]=val;
+     }
+     return nums1;
+    }
+}
