@@ -1860,3 +1860,50 @@ class Solution {
 
     }
 }
+
+// asteriod collision
+
+
+ class Solution {
+    public int[] asteroidCollision(int[] arr) {
+        Stack<Integer> ss = new Stack<>();
+       for(int i=0;i<arr.length;i++){
+        int curr=arr[i];
+        if(curr>0){
+            ss.push(curr);
+        }
+         else{
+        boolean mark=false;
+         while(!ss.isEmpty() && ss.peek()>0){
+            if(Math.abs(curr)==ss.peek()){
+            ss.pop();
+            mark=true;
+            break;
+        }
+        else if(Math.abs(curr)>ss.peek()){
+            ss.pop();
+            mark=false;
+        }else{
+            mark=true;
+            break;
+        }
+       
+         }
+          if(mark==false){
+            ss.push(curr);
+        }
+
+        
+       }}
+       List<Integer>ans=new ArrayList<>();
+       while(!ss.isEmpty()){
+        ans.add(ss.pop());
+       }
+       Collections.reverse(ans);
+       int a[]=new int[ans.size()];
+       for(int i=0;i<ans.size();i++){
+        a[i]=ans.get(i);
+       }
+       return a;
+    }
+}
