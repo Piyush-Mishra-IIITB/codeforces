@@ -1907,3 +1907,34 @@ class Solution {
        return a;
     }
 }
+// largest rectangle in histogram
+
+class Solution {
+    public int largestRectangleArea(int[] arr) {
+        int max = 0;
+
+        for (int i = 0; i < arr.length; i++) {
+            int curr = arr[i];
+
+            int left = -1;
+            int right = arr.length;
+            for (int j = i - 1; j >= 0; j--) {
+                if (arr[j] < curr) {
+                    left = j;
+                    break;
+                }
+            }
+
+            for (int j = i + 1; j < arr.length; j++) {
+                if (arr[j] < curr) {
+                    right = j;
+                    break;
+                }
+            }
+            int width = right - left - 1;
+            max = Math.max(max, width * curr);
+        }
+
+        return max;
+    }
+}
