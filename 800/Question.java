@@ -1938,3 +1938,51 @@ class Solution {
         return max;
     }
 }
+
+
+// median of 2 sorted array
+
+
+class Solution {
+    public double findMedianSortedArrays(int[] nums1, int[] nums2) {
+        int n = nums1.length;
+        int m = nums2.length;
+
+        int arr[] = new int[n + m];
+
+        int i = 0, j = 0;
+        List<Integer> ans = new ArrayList<>();
+
+        while (i < n && j < m) {
+            if (nums1[i] >= nums2[j]) {
+                ans.add(nums2[j]);
+                j++;
+            } else {
+                ans.add(nums1[i]); 
+                i++;
+            }
+        }
+
+        while (i < n) {
+            ans.add(nums1[i]);  
+            i++;
+        }
+
+        while (j < m) {
+            ans.add(nums2[j]);
+            j++; 
+        }
+
+        
+        for (int p = 0; p < ans.size(); p++) {
+            arr[p] = ans.get(p);
+        }
+        int len = arr.length;
+        if (len % 2 == 0) {
+            int mid = len / 2;
+            return (arr[mid] + arr[mid - 1]) / 2.0; 
+        } else {
+            return arr[len / 2]; 
+        }
+    }
+}
