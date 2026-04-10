@@ -2052,3 +2052,36 @@ class Solution {
     }
    
 }
+
+// level order traversal
+
+
+import java.util.*;
+class Solution {
+    public List<List<Integer>> levelOrder(TreeNode root) {
+        if(root==null){
+            return new ArrayList<>();
+        }
+        List<List<Integer>> ans=new ArrayList<>();
+        Queue<TreeNode>qq=new LinkedList<>();
+        qq.add(root);
+        while(!qq.isEmpty()){
+            List<Integer> an=new ArrayList<>();
+            int length=qq.size();
+            for(int i=0;i<length;i++){
+            TreeNode curr=qq.poll();  
+            an.add(curr.val);       
+             if(curr.left!=null){
+                qq.add(curr.left);
+            }
+            if(curr.right!=null){
+                qq.add(curr.right);
+            }
+            }
+
+           ans.add(new ArrayList<>(an)); 
+
+        }
+        return ans;
+    }
+}
