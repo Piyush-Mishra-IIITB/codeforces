@@ -2085,3 +2085,34 @@ class Solution {
         return ans;
     }
 }
+
+
+// balanced binary tree
+class Solution {
+    public boolean isBalanced(TreeNode root) {
+        if(root==null){
+            return true;
+        }
+      int lh=height(root.left);
+      int rh=height(root.right);
+      if(Math.abs(lh-rh)>1){
+        return false;
+      }
+      boolean lef=isBalanced(root.left);
+      boolean righ=isBalanced(root.right);
+      if(!lef || !righ){
+        return false;
+      }else{
+        return true;
+      }
+    
+    }
+    public int height(TreeNode root){
+        if(root==null){
+            return 0;
+        }
+        int left=height(root.left);
+        int right=height(root.right);
+        return Math.max(left,right)+1;
+    }
+}
