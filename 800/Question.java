@@ -2031,3 +2031,24 @@ class Solution {
         }
     }
 }
+
+// inordr traversal travesal 
+
+
+class Solution {
+    public List<Integer> inorderTraversal(TreeNode root) {
+        List<Integer> ll=new ArrayList<>();
+        inorder(root,ll);
+        return ll;
+      
+    }
+    public static void inorder(TreeNode root,List<Integer>ans){
+        if(root==null){
+            return;
+        }
+        inorder(root.left,ans);
+        ans.add(root.val);
+        inorder(root.right,ans);
+    }
+   
+}
