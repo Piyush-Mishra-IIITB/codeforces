@@ -2366,3 +2366,28 @@ class Solution {
         ss.setLength(len);
     }
 }
+
+// 404. Sum of Left Leaves
+
+
+
+class Solution {
+    int sum=0;
+    public int sumOfLeftLeaves(TreeNode root) {
+        TreeNode p=new TreeNode(-1);
+        helper(root,p);
+        return sum;
+    }
+    public void helper(TreeNode root,TreeNode parent){
+        if(root==null){
+            return;
+        }
+        if(root.right==null && root.left==null){
+             if(parent.left==root){
+               sum+=root.val;
+             }
+        }
+        helper(root.left,root);
+        helper(root.right,root);
+    }
+}
