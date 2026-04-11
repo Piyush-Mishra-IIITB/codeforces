@@ -2311,3 +2311,26 @@ class Solution {
         ll.remove(ll.size() - 1); 
     }
 }
+
+// invert binary tree
+
+
+class Solution {
+    public TreeNode invertTree(TreeNode root) {
+        if(root==null){
+            return null;
+        }
+        helper(root);
+        return root;
+    }
+    public void helper(TreeNode root){
+         if(root==null){
+            return;
+         }
+         TreeNode v=root.left;
+         root.left=root.right;
+         root.right=v;
+         helper(root.left);
+         helper(root.right);
+    }
+}
