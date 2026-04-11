@@ -2116,3 +2116,57 @@ class Solution {
         return Math.max(left,right)+1;
     }
 }
+// level wise traversal of binary tree
+
+import java.util.*;
+
+class Node {
+    int data;
+    Node left;
+    Node right;
+
+    Node(int data){
+        this.data = data;
+    }
+}
+
+public class Main {
+
+    public static void levels(Node root, int l, HashMap<Integer, List<Integer>> ans){
+        if(root == null){
+            return;
+        }
+
+        if(ans.containsKey(l)){
+            List<Integer> ll = ans.get(l);
+            ll.add(root.data);
+        } else {
+            List<Integer> ll = new ArrayList<>();
+            ll.add(root.data);
+            ans.put(l, ll);
+        }
+
+        levels(root.left, l + 1, ans);
+        levels(root.right, l + 1, ans);
+    }
+
+    public static void main(String[] args) {
+        Node root = new Node(1);
+        root.left = new Node(2);
+        root.right = new Node(3);
+        root.left.left = new Node(4);
+        root.left.right = new Node(5);
+        root.right.left = new Node(6);
+        root.right.right = new Node(7);
+
+        HashMap<Integer, List<Integer>> ans = new HashMap<>();
+        levels(root, 0, ans);
+
+        for(int i = 0; i < ans.size(); i++){
+            List<Integer> ll = ans.get(i);
+            for(int j = 0; j < ll.size(); j++){
+                System.out.println("Level " + i + " -> " + ll.get(j));
+            }
+        }
+    }
+}
