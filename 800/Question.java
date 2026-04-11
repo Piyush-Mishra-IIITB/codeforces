@@ -2235,3 +2235,35 @@ class Solution {
 
     }
 }
+
+// path sum 2 in binary tree
+
+
+
+class Solution {
+    public List<List<Integer>> pathSum(TreeNode root, int targetSum) {
+        List<List<Integer>> ans=new ArrayList<>();
+        List<Integer>ll=new ArrayList<>();
+        helper(targetSum,root,ll,ans);
+        return ans;
+    }
+    public void helper(int target,TreeNode root,List<Integer>var,List<List<Integer>>ans){
+        if(root==null){
+            return;
+        }
+        
+        if(root.left==null && root.right==null){
+           
+            if(root.val==target){
+                var.add(root.val);
+                ans.add(new ArrayList<>(var));
+                var.remove(var.size()-1);
+                return;
+            }
+        }
+        var.add(root.val);
+        helper(target-root.val,root.left,var,ans);
+        helper(target-root.val,root.right,var,ans);
+        var.remove(var.size()-1);
+    }
+}
