@@ -2197,3 +2197,41 @@ class Solution {
         return Math.max(left,right)+1;
     }
 }
+
+
+
+
+// path sum in binary tree
+
+
+
+class Solution {
+    public boolean hasPathSum(TreeNode root, int targetSum) {
+        if(root==null){
+            return false;
+        }
+        return helper(root,targetSum);
+    }
+    public boolean helper(TreeNode root,int target){
+        if(root==null){
+           return false;
+        }
+     if(root.left==null && root.right==null){
+        if(target==root.val){
+            return true;
+        }else{
+            return false;
+        }
+     }
+
+        boolean left=helper(root.left,target-root.val);
+        boolean right=helper(root.right,target-root.val);
+        
+        if(left || right){
+            return true;
+        }else{
+            return false;
+        }
+
+    }
+}
