@@ -2267,3 +2267,47 @@ class Solution {
         var.remove(var.size()-1);
     }
 }
+
+// 129. Sum Root to Leaf Numbers
+
+class Solution {
+    public int sumNumbers(TreeNode root) {
+        List<List<Integer>> ans = new ArrayList<>();
+        List<Integer> ll = new ArrayList<>();
+
+        helper(ll, ans, root);
+
+        int total = 0;
+
+        
+        for(int i = 0; i < ans.size(); i++){
+            List<Integer> path = ans.get(i);
+            int num = 0;
+
+            for(int j = 0; j < path.size(); j++){
+                num = num * 10 + path.get(j);
+            }
+
+            total += num;
+        }
+
+        return total;
+    }
+
+    public static void helper(List<Integer> ll, List<List<Integer>> ans, TreeNode root){
+        if(root == null){
+            return;
+        }
+
+        ll.add(root.val);
+
+        if(root.left == null && root.right == null){
+            ans.add(new ArrayList<>(ll));
+        } else {
+            helper(ll, ans, root.left);
+            helper(ll, ans, root.right);
+        }
+
+        ll.remove(ll.size() - 1); 
+    }
+}
