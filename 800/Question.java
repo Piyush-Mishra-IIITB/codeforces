@@ -2334,3 +2334,35 @@ class Solution {
          helper(root.right);
     }
 }
+
+
+// binary tree path
+
+
+class Solution {
+    public List<String> binaryTreePaths(TreeNode root) {
+        List<String> ans = new ArrayList<>();
+        StringBuilder ss = new StringBuilder();
+        helper(ans, ss, root);
+        return ans;
+    }
+
+    public void helper(List<String> ans, StringBuilder ss, TreeNode root){
+        if(root == null){
+            return;
+        }
+
+        int len = ss.length();
+        if(len != 0){
+            ss.append("->");
+        }
+        ss.append(root.val);
+        if(root.left == null && root.right == null){
+            ans.add(ss.toString());
+        } else {
+            helper(ans, ss, root.left);
+            helper(ans, ss, root.right);
+        }
+        ss.setLength(len);
+    }
+}
