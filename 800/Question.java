@@ -2391,3 +2391,38 @@ class Solution {
         helper(root.right,root);
     }
 }
+
+
+// path sum 3 in binary tree
+
+
+
+ class Solution {
+    int no = 0;
+
+    public int pathSum(TreeNode root, int targetSum) {
+        if(root == null){
+            return no;
+        }
+
+        helper(root, targetSum, 0);
+
+        pathSum(root.left, targetSum);
+        pathSum(root.right, targetSum);
+
+        return no;
+    }
+
+    public void helper(TreeNode root, int target, long sum){ 
+        if(root == null){
+            return;
+        }
+
+        if(sum + root.val == target){
+            no++;
+        }
+
+        helper(root.left, target, sum + root.val);
+        helper(root.right, target, sum + root.val);
+    }
+}
