@@ -2426,3 +2426,33 @@ class Solution {
         helper(root.right, target, sum + root.val);
     }
 }
+
+// 429. N-ary Tree Level Order Traversal
+
+
+class Solution {
+    public List<List<Integer>> levelOrder(Node root) {
+        List<List<Integer>> ans=new ArrayList<>();
+        if(root==null){
+            return ans;
+        }
+        
+        Queue<Node>qq=new LinkedList<>();
+        qq.add(root);
+        while(!qq.isEmpty()){
+            List<Integer>ll=new ArrayList<>();
+            int length=qq.size();
+            for(int i=0;i<length;i++){
+                Node curr=qq.poll();
+                ll.add(curr.val);
+                if (curr.children != null) {
+                List<Node>child=curr.children;
+                for(int j=0;j<child.size();j++){
+                    qq.add(child.get(j));
+                }
+            }}
+            ans.add(new ArrayList<>(ll));
+        }
+        return ans;
+    }
+}
