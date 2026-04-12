@@ -2456,3 +2456,50 @@ class Solution {
         return ans;
     }
 }
+
+// 501. Find Mode in Binary Search Tree
+
+
+class Solution {
+    public int[] findMode(TreeNode root) {
+        HashMap<Integer, Integer> hm = new HashMap<>();
+        List<Integer> ans = new ArrayList<>();
+
+        helper(ans, root);
+
+        for (int i = 0; i < ans.size(); i++) {
+            int curr = ans.get(i);
+            if (hm.containsKey(curr)) {
+                hm.put(curr, hm.get(curr) + 1);
+            } else {
+                hm.put(curr, 1);
+            }
+        }
+
+        int max = Integer.MIN_VALUE;
+        for (Integer val : hm.values()) {
+            max = Math.max(max, val);
+        }
+
+        List<Integer> res = new ArrayList<>();
+        for (Integer key : hm.keySet()) {
+            if (hm.get(key) == max) {
+                res.add(key);
+            }
+        }
+
+        int[] result = new int[res.size()];
+        for (int i = 0; i < res.size(); i++) {
+            result[i] = res.get(i);
+        }
+
+        return result;
+    }
+
+    public void helper(List<Integer> ans, TreeNode root) {
+        if (root == null) return;
+        helper(ans, root.left);
+        ans.add(root.val);
+        helper(ans, root.right);
+    }
+}
