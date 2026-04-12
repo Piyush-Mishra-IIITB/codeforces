@@ -2595,3 +2595,54 @@ class Solution {
         }
     }
 }
+
+
+//lowest common ancestor of binary tree
+
+
+class Solution {
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+
+        List<List<TreeNode>> ans = new ArrayList<>();
+
+        helper(p, root, new ArrayList<>(), ans);
+        helper(q, root, new ArrayList<>(), ans);
+
+        List<TreeNode> a = ans.get(0);
+        List<TreeNode> b = ans.get(1);
+
+        int i = 0;
+        TreeNode temp = null;
+
+        while (i < a.size() && i < b.size()) {
+            if (a.get(i) == b.get(i)) {
+                temp = a.get(i);
+            } else {
+                break;
+            }
+            i++;
+        }
+
+        return temp;
+    }
+
+    public void helper(TreeNode target, TreeNode root,
+                       List<TreeNode> path,
+                       List<List<TreeNode>> ans) {
+
+        if (root == null) return;
+
+        path.add(root);
+
+        if (root == target) {
+            ans.add(new ArrayList<>(path));
+            path.remove(path.size() - 1);
+            return;
+        }
+
+        helper(target, root.left, path, ans);
+        helper(target, root.right, path, ans);
+
+        path.remove(path.size() - 1);
+    }
+}
