@@ -2555,3 +2555,43 @@ class Solution {
         return ans;
     }
 }
+
+// binary tree right side view
+
+
+
+class Solution {
+    
+    public List<Integer> rightSideView(TreeNode root) {
+        List<List<Integer>>ans=new ArrayList<>();
+        helper(ans,root);
+         List<Integer>ll=new ArrayList<>();
+         for(int i=0;i<ans.size();i++){
+            List<Integer>l=ans.get(i);
+            ll.add(l.get(l.size()-1));
+         }
+         return ll;
+    }
+    public static void helper(List<List<Integer>>ans,TreeNode root){
+        if(root==null){
+            return;
+        }
+        Queue<TreeNode>qq=new LinkedList<>();
+        qq.add(root);
+        while(!qq.isEmpty()){
+            int length=qq.size();
+             List<Integer>ll=new ArrayList<>();
+            for(int i=0;i<length;i++){
+                TreeNode curr=qq.poll();
+                ll.add(curr.val);
+                if(curr.left!=null){
+                    qq.add(curr.left);
+                }
+                if(curr.right!=null){
+                    qq.add(curr.right);
+                }
+            }
+            ans.add(new ArrayList<>(ll));
+        }
+    }
+}
