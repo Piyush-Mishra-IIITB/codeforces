@@ -2503,3 +2503,55 @@ class Solution {
         helper(ans, root.right);
     }
 }
+
+// top view of binary tree
+
+
+import java.util.*;
+
+class Solution {
+    
+    public class pair {
+        TreeNode node;
+        int hd;
+        
+        pair(TreeNode node, int hd) {
+            this.node = node;
+            this.hd = hd;
+        }
+    }
+    
+    public List<Integer> topView(TreeNode root) {
+        
+        List<Integer> ans = new ArrayList<>();
+        if (root == null) return ans;
+
+        TreeMap<Integer, Integer> hm = new TreeMap<>();
+        Queue<pair> qq = new LinkedList<>();
+        qq.add(new pair(root, 0));
+
+        while (!qq.isEmpty()) {
+            pair curr = qq.poll();
+            TreeNode p = curr.node;
+            int h = curr.hd;
+
+            if (!hm.containsKey(h)) {
+                hm.put(h, p.val);
+            }
+
+            if (p.left != null) {
+                qq.add(new pair(p.left, h - 1));
+            }
+
+            if (p.right != null) {
+                qq.add(new pair(p.right, h + 1));
+            }
+        }
+
+        for (int val : hm.values()) {
+            ans.add(val);
+        }
+
+        return ans;
+    }
+}
